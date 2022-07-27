@@ -6,8 +6,6 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import ru.kofesutra.fiveten_v2.R
-import ru.kofesutra.fiveten_v2.presentation.ui.dialogs.YouWin
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.apply {
             title = "FiveTen_v2"
             setDisplayShowHomeEnabled(true)
+//            setDisplayHomeAsUpEnabled(true)
             setLogo(R.drawable.dd5)
             setDisplayUseLogoEnabled(true)
         }
@@ -31,4 +30,5 @@ class MainActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
+
 } ///

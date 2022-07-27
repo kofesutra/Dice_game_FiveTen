@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import ru.kofesutra.fiveten_v2.presentation.MainActivity
 import ru.kofesutra.fiveten_v2.R
 import ru.kofesutra.fiveten_v2.databinding.FragmentHowToPlayBinding
+import ru.kofesutra.fiveten_v2.presentation.MainActivity
 
 class HowToPlayFragment : Fragment() {
 
@@ -31,15 +31,13 @@ class HowToPlayFragment : Fragment() {
 
         val rules = """
             Правила игры:
-            
-            На один ход даётся три броска костей
+            На один ход даётся три броска костей.
             "5" считается как пять очков, "1" считается как десять очков, другие грани не имеют значения.
             Кубики с невыпавшими "5" и "1" перебрасываются.
             Кубики бросаются игроками по очереди.
-            
-            Побеждает тот игрок, который раньше наберёт 100 очков.
-            В случае если игроки сделали одинаковое количество ходов побеждает игрок с большей суммой очков.
-                        
+            Игроки делают одинаковое число ходов.
+            Побеждает тот игрок, который раньше наберёт 100 очков или, в случае, если все набрали 100, у кого общий итог больше.
+                                    
             PS. Эту игру я когда-то придумал сам :)"
         """.trimIndent()
 
@@ -53,6 +51,7 @@ class HowToPlayFragment : Fragment() {
             bundle.putString("key", "Hello")
             (activity as MainActivity).navController.navigate(R.id.action_howToPlayFragment_to_mainFragment, bundle)
         }
+
     }
 
     override fun onDestroy() {

@@ -16,6 +16,9 @@ object Singleton {
     var attemptNumber = ButtonState().buttonState
 
     // Live Datas
+    var liveMessage = MutableLiveData<String>()
+    var liveButton = MutableLiveData<String>()
+
     var switchBottomSheet = MutableLiveData<Boolean>()
     var liveMyResultsNow = MutableLiveData<Int>()
     var liveAndrResultNow = MutableLiveData<Int>()

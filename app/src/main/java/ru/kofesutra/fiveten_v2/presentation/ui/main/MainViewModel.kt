@@ -2,23 +2,22 @@ package ru.kofesutra.fiveten_v2.presentation.ui.main
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import ru.kofesutra.fiveten_v2.domain.AndroidDrops
 import ru.kofesutra.fiveten_v2.domain.GameResult
 import ru.kofesutra.fiveten_v2.domain.UserDrops
 import ru.kofesutra.fiveten_v2.presentation.utils.Singleton
 import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.attemptNumber
+import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.liveButton
+import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.liveMessage
 import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.myValuesList
 import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesList
 import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesListAndr
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-
-    var liveMessage = MutableLiveData<String>()
-    var liveButton = MutableLiveData<String>()
-
     fun buttonCounts(){
+
+        liveMessage.value = "Сделайте бросок"
 
         when(attemptNumber){
 
