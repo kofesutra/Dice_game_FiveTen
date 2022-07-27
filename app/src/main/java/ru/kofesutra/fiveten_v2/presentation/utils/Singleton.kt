@@ -24,10 +24,7 @@ object Singleton {
     var liveAndrResultNow = MutableLiveData<Int>()
     var liveMyResultTotal = MutableLiveData<Int>()
     var liveAndrResultTotal = MutableLiveData<Int>()
-
-    var liveDicesText = MutableLiveData<List<Int>>() // Remove at the end!!!
     var liveDicesImages = MutableLiveData<List<Int>>()
-
     var liveDialogActivator = MutableLiveData<Boolean>()
     var liveDialogSwitch = 0
 

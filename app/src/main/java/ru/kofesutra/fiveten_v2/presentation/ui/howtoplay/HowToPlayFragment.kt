@@ -20,7 +20,6 @@ class HowToPlayFragment : Fragment() {
     ): View {
         binding = FragmentHowToPlayBinding.inflate(inflater, container,false)
         return binding!!.root
-
     } // End of onCreateView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +50,6 @@ class HowToPlayFragment : Fragment() {
             bundle.putString("key", "Hello")
             (activity as MainActivity).navController.navigate(R.id.action_howToPlayFragment_to_mainFragment, bundle)
         }
-
     }
 
     override fun onDestroy() {

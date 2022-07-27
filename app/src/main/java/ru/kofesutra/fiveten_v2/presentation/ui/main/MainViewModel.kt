@@ -28,7 +28,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 GameResult().refreshResults()
                 liveMessage.value = "Ещё бросок!"
                 attemptNumber = 1
-
             }
             1 -> {
                 UserDrops().secondThirdDropsUser()

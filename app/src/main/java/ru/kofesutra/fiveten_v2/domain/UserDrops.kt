@@ -24,9 +24,6 @@ class UserDrops {
             myValuesList[i] = randomValue // Записываем результат в основной список valuesList
         } // for (i in 0..4)
         myResultNow = myValuesList.sum()
-//        Log.d(TAG, "111 - Fun ok")
-//        Log.d(TAG, "111 valuesListDraw S ${Singleton.valuesListDraw }")
-//        Log.d(TAG, "111 Results S ${Singleton.myResultNow }")
     }
 
     fun secondThirdDropsUser(){

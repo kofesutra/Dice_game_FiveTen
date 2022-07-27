@@ -21,7 +21,6 @@ import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesListDraw
 class GameResult {
 
     fun gameResult(){
-        Log.d(ContentValues.TAG, "333 3")
         if (myResultTotal > 99 || andrResultTotal > 99){
             if (myResultTotal > andrResultTotal) { // YouWin
                 liveDialogSwitch = 1
@@ -51,20 +50,16 @@ class GameResult {
         mySummaryList = mutableListOf(0)
         summaryListAndr = mutableListOf(0)
 
-        Singleton.liveDicesText.value = valuesListDraw
         Singleton.liveDicesImages.value = valuesListDraw
-
         Singleton.liveMyResultsNow.value = myResultNow
         Singleton.liveAndrResultNow.value = andrResultNow
         Singleton.liveMyResultTotal.value = myResultTotal
         Singleton.liveAndrResultTotal.value = andrResultTotal
-         liveDialogSwitch = 0
+        liveDialogSwitch = 0
     }
 
     fun refreshResults(){
-        Singleton.liveDicesText.value = valuesListDraw
         Singleton.liveDicesImages.value = valuesListDraw
-
         Singleton.liveMyResultsNow.value = myResultNow
         Singleton.liveAndrResultNow.value = andrResultNow
         Singleton.liveMyResultTotal.value = myResultTotal
