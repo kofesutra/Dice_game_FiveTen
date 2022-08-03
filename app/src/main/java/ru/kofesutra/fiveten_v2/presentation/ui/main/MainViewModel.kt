@@ -7,7 +7,7 @@ import ru.kofesutra.fiveten_v2.domain.GameResult
 import ru.kofesutra.fiveten_v2.domain.UserDrops
 import ru.kofesutra.fiveten_v2.presentation.utils.Singleton
 import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.attemptNumber
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.liveButton
+import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.liveButtonText
 import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.liveMessage
 import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.myValuesList
 import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesList
@@ -38,7 +38,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             2 -> {
                 UserDrops().secondThirdDropsUser()
                 GameResult().refreshResults()
-                liveButton.value = "Дать поиграть Андрюше"
+                liveButtonText.value = "Дать поиграть Андрюше"
                 liveMessage.value = "Все броски сделаны"
                 attemptNumber = 3
             }
@@ -46,7 +46,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             3 -> {
                 // ----- Играет Андрюша -----
                 valuesList = valuesListAndr
-                Singleton.switchBottomSheet.value = true // Turn on bottom sheet once
+                Singleton.liveSwitchBottomSheet.value = true // Turn on bottom sheet once
                 AndroidDrops().firstDropAndroid()
                 AndroidDrops().secondThirdDropsAndroid()
                 AndroidDrops().secondThirdDropsAndroid()
@@ -54,7 +54,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                // End of ----- Играет Андрюша -----
 
                 GameResult().refreshResults()
-                liveButton.value = "Бросок!"
+                liveButtonText.value = "Бросок!"
                 liveMessage.value = "Сделайте бросок"
                 attemptNumber = 0
                 GameResult().gameResult()

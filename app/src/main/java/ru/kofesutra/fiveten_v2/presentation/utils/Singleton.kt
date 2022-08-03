@@ -17,9 +17,8 @@ object Singleton {
 
     // Live Datas
     var liveMessage = MutableLiveData<String>()
-    var liveButton = MutableLiveData<String>()
-
-    var switchBottomSheet = MutableLiveData<Boolean>()
+    var liveButtonText = MutableLiveData<String>()
+    var liveSwitchBottomSheet = MutableLiveData<Boolean>()
     var liveMyResultsNow = MutableLiveData<Int>()
     var liveAndrResultNow = MutableLiveData<Int>()
     var liveMyResultTotal = MutableLiveData<Int>()

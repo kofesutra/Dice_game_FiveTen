@@ -168,13 +168,13 @@ class MainFragment : Fragment() {
         mediatorLiveData.addSource(Singleton.liveMessage) {
             binding!!.message1.text = it
         }
-        mediatorLiveData.addSource(Singleton.liveButton) {
+        mediatorLiveData.addSource(Singleton.liveButtonText) {
             binding!!.playButton.text = it
         }
-        mediatorLiveData.addSource(Singleton.switchBottomSheet) {
+        mediatorLiveData.addSource(Singleton.liveSwitchBottomSheet) {
             if (it == true) {
                 runBottomSheet()
-                Singleton.switchBottomSheet.value = false
+                Singleton.liveSwitchBottomSheet.value = false
             }
         }
         mediatorLiveData.addSource(Singleton.liveMyResultsNow) {
@@ -203,8 +203,8 @@ class MainFragment : Fragment() {
 
     private fun observersRemove() {
         mediatorLiveData.removeSource(Singleton.liveMessage)
-        mediatorLiveData.removeSource(Singleton.liveButton)
-        mediatorLiveData.removeSource(Singleton.switchBottomSheet)
+        mediatorLiveData.removeSource(Singleton.liveButtonText)
+        mediatorLiveData.removeSource(Singleton.liveSwitchBottomSheet)
         mediatorLiveData.removeSource(Singleton.liveMyResultsNow)
         mediatorLiveData.removeSource(Singleton.liveAndrResultNow)
         mediatorLiveData.removeSource(Singleton.liveMyResultTotal)
