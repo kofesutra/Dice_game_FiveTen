@@ -21,7 +21,7 @@ import ru.kofesutra.fiveten_v2.presentation.ui.dialogs.WinWin
 import ru.kofesutra.fiveten_v2.presentation.ui.dialogs.YouLoose
 import ru.kofesutra.fiveten_v2.presentation.ui.dialogs.YouWin
 import ru.kofesutra.fiveten_v2.presentation.utils.BottomSheet
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables
 
 class MainFragment : Fragment() {
 
@@ -118,7 +118,7 @@ class MainFragment : Fragment() {
         // ----- Заполнение картинками -----
         var diceDrawTemp = 0
         for (i in 0..4) {
-            when (Singleton.valuesListDraw[i]) {
+            when (Variables.valuesListDraw[i]) {
                 1 -> diceDrawTemp = R.drawable.dd1
                 2 -> diceDrawTemp = R.drawable.dd2
                 3 -> diceDrawTemp = R.drawable.dd3
@@ -142,59 +142,59 @@ class MainFragment : Fragment() {
     } // End of ----- Заполнение картинками -----
 
     private fun runDialog() {
-        when (Singleton.liveDialogSwitch) {
+        when (Variables.liveDialogSwitch) {
             1 -> {
                 val dialogFragmentHere = YouWin()
                 val manager = requireActivity().supportFragmentManager
                 dialogFragmentHere.show(manager, "youwin")
-                Singleton.liveDialogSwitch = 0
+                Variables.liveDialogSwitch = 0
             }
             2 -> {
                 val dialogFragmentHere = YouLoose()
                 val manager = requireActivity().supportFragmentManager
                 dialogFragmentHere.show(manager, "youloose")
-                Singleton.liveDialogSwitch = 0
+                Variables.liveDialogSwitch = 0
             }
             3 -> {
                 val dialogFragmentHere = WinWin()
                 val manager = requireActivity().supportFragmentManager
                 dialogFragmentHere.show(manager, "winwin")
-                Singleton.liveDialogSwitch = 0
+                Variables.liveDialogSwitch = 0
             }
         }
     }
 
     private fun observersAdd() {
-        mediatorLiveData.addSource(Singleton.liveMessage) {
+        mediatorLiveData.addSource(Variables.liveMessage) {
             binding!!.message1.text = it
         }
-        mediatorLiveData.addSource(Singleton.liveButtonText) {
+        mediatorLiveData.addSource(Variables.liveButtonText) {
             binding!!.playButton.text = it
         }
-        mediatorLiveData.addSource(Singleton.liveSwitchBottomSheet) {
+        mediatorLiveData.addSource(Variables.liveSwitchBottomSheet) {
             if (it == true) {
                 runBottomSheet()
-                Singleton.liveSwitchBottomSheet.value = false
+                Variables.liveSwitchBottomSheet.value = false
             }
         }
-        mediatorLiveData.addSource(Singleton.liveMyResultsNow) {
+        mediatorLiveData.addSource(Variables.liveMyResultsNow) {
             binding!!.myScoresNow.text = it.toString()
         }
-        mediatorLiveData.addSource(Singleton.liveAndrResultNow) {
+        mediatorLiveData.addSource(Variables.liveAndrResultNow) {
             binding!!.andrScoresNow.text = it.toString()
         }
-        mediatorLiveData.addSource(Singleton.liveMyResultTotal) {
+        mediatorLiveData.addSource(Variables.liveMyResultTotal) {
             binding!!.myScoresTotal.text = it.toString()
         }
-        mediatorLiveData.addSource(Singleton.liveAndrResultTotal) {
+        mediatorLiveData.addSource(Variables.liveAndrResultTotal) {
             binding!!.andrScoresTotal.text = it.toString()
         }
-        mediatorLiveData.addSource(Singleton.liveDicesImages) {
+        mediatorLiveData.addSource(Variables.liveDicesImages) {
             bindDicesImages()
         }
-        mediatorLiveData.addSource(Singleton.liveDialogActivator) {
+        mediatorLiveData.addSource(Variables.liveDialogActivator) {
             if (it == true) {
-                Singleton.liveDialogActivator.value = false
+                Variables.liveDialogActivator.value = false
                 runDialog()
             }
         }
@@ -202,14 +202,14 @@ class MainFragment : Fragment() {
     }
 
     private fun observersRemove() {
-        mediatorLiveData.removeSource(Singleton.liveMessage)
-        mediatorLiveData.removeSource(Singleton.liveButtonText)
-        mediatorLiveData.removeSource(Singleton.liveSwitchBottomSheet)
-        mediatorLiveData.removeSource(Singleton.liveMyResultsNow)
-        mediatorLiveData.removeSource(Singleton.liveAndrResultNow)
-        mediatorLiveData.removeSource(Singleton.liveMyResultTotal)
-        mediatorLiveData.removeSource(Singleton.liveAndrResultTotal)
-        mediatorLiveData.removeSource(Singleton.liveDicesImages)
-        mediatorLiveData.removeSource(Singleton.liveDialogActivator)
+        mediatorLiveData.removeSource(Variables.liveMessage)
+        mediatorLiveData.removeSource(Variables.liveButtonText)
+        mediatorLiveData.removeSource(Variables.liveSwitchBottomSheet)
+        mediatorLiveData.removeSource(Variables.liveMyResultsNow)
+        mediatorLiveData.removeSource(Variables.liveAndrResultNow)
+        mediatorLiveData.removeSource(Variables.liveMyResultTotal)
+        mediatorLiveData.removeSource(Variables.liveAndrResultTotal)
+        mediatorLiveData.removeSource(Variables.liveDicesImages)
+        mediatorLiveData.removeSource(Variables.liveDialogActivator)
     }
 } ///

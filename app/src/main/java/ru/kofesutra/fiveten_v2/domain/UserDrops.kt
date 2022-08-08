@@ -1,11 +1,11 @@
 package ru.kofesutra.fiveten_v2.domain
 
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.attemptNumber
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.myResultNow
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.myResultTotal
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.mySummaryList
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.myValuesList
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesListDraw
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.attemptNumber
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.myResultNow
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.myResultTotal
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.mySummaryList
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.myValuesList
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesListDraw
 
 class UserDrops {
 

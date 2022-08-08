@@ -1,22 +1,20 @@
 package ru.kofesutra.fiveten_v2.domain
 
-import android.content.ContentValues
-import android.util.Log
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.andrResultNow
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.andrResultTotal
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.attemptNumber
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.liveAndrResultTotal
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.liveDialogActivator
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.liveDialogSwitch
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.myResultNow
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.myResultTotal
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.mySummaryList
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.myValuesList
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.summaryListAndr
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesList
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesListAndr
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesListDraw
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.andrResultNow
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.andrResultTotal
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.attemptNumber
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.liveAndrResultTotal
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.liveDialogActivator
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.liveDialogSwitch
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.myResultNow
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.myResultTotal
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.mySummaryList
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.myValuesList
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.summaryListAndr
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesList
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesListAndr
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesListDraw
 
 class GameResult {
 
@@ -50,19 +48,19 @@ class GameResult {
         mySummaryList = mutableListOf(0)
         summaryListAndr = mutableListOf(0)
 
-        Singleton.liveDicesImages.value = valuesListDraw
-        Singleton.liveMyResultsNow.value = myResultNow
-        Singleton.liveAndrResultNow.value = andrResultNow
-        Singleton.liveMyResultTotal.value = myResultTotal
-        Singleton.liveAndrResultTotal.value = andrResultTotal
+        Variables.liveDicesImages.value = valuesListDraw
+        Variables.liveMyResultsNow.value = myResultNow
+        Variables.liveAndrResultNow.value = andrResultNow
+        Variables.liveMyResultTotal.value = myResultTotal
+        liveAndrResultTotal.value = andrResultTotal
         liveDialogSwitch = 0
     }
 
     fun refreshResults(){
-        Singleton.liveDicesImages.value = valuesListDraw
-        Singleton.liveMyResultsNow.value = myResultNow
-        Singleton.liveAndrResultNow.value = andrResultNow
-        Singleton.liveMyResultTotal.value = myResultTotal
+        Variables.liveDicesImages.value = valuesListDraw
+        Variables.liveMyResultsNow.value = myResultNow
+        Variables.liveAndrResultNow.value = andrResultNow
+        Variables.liveMyResultTotal.value = myResultTotal
         liveAndrResultTotal.value = andrResultTotal
     }
 

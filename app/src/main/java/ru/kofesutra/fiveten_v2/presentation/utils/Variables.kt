@@ -2,7 +2,7 @@ package ru.kofesutra.fiveten_v2.presentation.utils
 
 import androidx.lifecycle.MutableLiveData
 
-object Singleton {
+object Variables {
     var valuesList = mutableListOf(0, 0, 0, 0, 0)
     var valuesListDraw = mutableListOf(0, 0, 0, 0, 0)
     var myValuesList = mutableListOf(0, 0, 0, 0, 0)

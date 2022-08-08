@@ -5,13 +5,13 @@ import androidx.lifecycle.AndroidViewModel
 import ru.kofesutra.fiveten_v2.domain.AndroidDrops
 import ru.kofesutra.fiveten_v2.domain.GameResult
 import ru.kofesutra.fiveten_v2.domain.UserDrops
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.attemptNumber
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.liveButtonText
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.liveMessage
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.myValuesList
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesList
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesListAndr
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.attemptNumber
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.liveButtonText
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.liveMessage
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.myValuesList
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesList
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesListAndr
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -46,7 +46,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             3 -> {
                 // ----- Играет Андрюша -----
                 valuesList = valuesListAndr
-                Singleton.liveSwitchBottomSheet.value = true // Turn on bottom sheet once
+                Variables.liveSwitchBottomSheet.value = true // Turn on bottom sheet once
                 AndroidDrops().firstDropAndroid()
                 AndroidDrops().secondThirdDropsAndroid()
                 AndroidDrops().secondThirdDropsAndroid()

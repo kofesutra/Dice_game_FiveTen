@@ -1,10 +1,10 @@
 package ru.kofesutra.fiveten_v2.domain
 
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.andrResultNow
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.andrResultTotal
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.summaryListAndr
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesListAndr
-import ru.kofesutra.fiveten_v2.presentation.utils.Singleton.valuesListDraw
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.andrResultNow
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.andrResultTotal
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.summaryListAndr
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesListAndr
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesListDraw
 
 class AndroidDrops {
 
