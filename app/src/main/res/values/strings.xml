@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FiveTen_v2</string>
-    <string name="action_rules">Rules</string>
-    <string name="action_exit">Exit</string>
+    <string name="action_rules">Правила игры</string>
+    <string name="action_exit">Выход</string>
     <string name="howtofragment">HowToFragment</string>
     <string name="back">Назад</string>
     <string name="mainfragment">MainFragment</string>

@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import ru.kofesutra.fiveten_v2.R
 import ru.kofesutra.fiveten_v2.databinding.FragmentHowToPlayBinding
-import ru.kofesutra.fiveten_v2.presentation.MainActivity
 
 class HowToPlayFragment : Fragment() {
 
@@ -46,9 +46,7 @@ class HowToPlayFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         binding?.howBtnBack?.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("key", "Hello")
-            (activity as MainActivity).navController.navigate(R.id.action_howToPlayFragment_to_mainFragment, bundle)
+            findNavController().navigate(R.id.action_howToPlayFragment_to_mainFragment)
         }
     }
 

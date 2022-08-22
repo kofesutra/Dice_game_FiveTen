@@ -9,10 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import ru.kofesutra.fiveten_v2.R
 import ru.kofesutra.fiveten_v2.databinding.FragmentMainBinding
@@ -26,10 +24,7 @@ import ru.kofesutra.fiveten_v2.presentation.utils.Variables
 class MainFragment : Fragment() {
 
     private var binding: FragmentMainBinding? = null
-    private val mViewModel by lazy { ViewModelProvider(this)[MainViewModel::class.java] }
-
-    private val mediatorLiveData = MediatorLiveData<String>()
-    private var observer: Observer<Any> = Observer { }
+    private val mViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +32,7 @@ class MainFragment : Fragment() {
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding!!.root
-    } // End of onCreateView
+    } // End of --- onCreateView ---
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -70,6 +65,8 @@ class MainFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
         // End of === OptionsMenu ===
 
+        addObservers()
+
         binding?.myScoresNow?.text = "0"
         binding?.myScoresTotal?.text = "0"
         binding?.andrScoresNow?.text = "0"
@@ -82,23 +79,12 @@ class MainFragment : Fragment() {
         Glide.with(this).load(R.drawable.dd4).override(180, 180).into(binding!!.dice4Draw)
         Glide.with(this).load(R.drawable.dd5).override(180, 180).into(binding!!.dice5Draw)
 
+        // Start the game
         binding?.playButton?.setOnClickListener {
             mViewModel.buttonCounts()
         }
 
     } // End of onViewCreated
-
-    override fun onStart() {
-        super.onStart()
-        mediatorLiveData.observe(viewLifecycleOwner, observer)
-        observersAdd()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        observersRemove()
-        mediatorLiveData.removeObserver(observer)
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -141,75 +127,66 @@ class MainFragment : Fragment() {
         }
     } // End of ----- Заполнение картинками -----
 
-    private fun runDialog() {
-        when (Variables.liveDialogSwitch) {
+    private fun runGameEndDialog() {
+        when (mViewModel.liveDialogSwitch) {
             1 -> {
                 val dialogFragmentHere = YouWin()
                 val manager = requireActivity().supportFragmentManager
                 dialogFragmentHere.show(manager, "youwin")
-                Variables.liveDialogSwitch = 0
+                mViewModel.liveDialogSwitch = 0
+                mViewModel.resetAllLiveDatas()
             }
             2 -> {
                 val dialogFragmentHere = YouLoose()
                 val manager = requireActivity().supportFragmentManager
                 dialogFragmentHere.show(manager, "youloose")
-                Variables.liveDialogSwitch = 0
+                mViewModel.liveDialogSwitch = 0
+                mViewModel.resetAllLiveDatas()
             }
             3 -> {
                 val dialogFragmentHere = WinWin()
                 val manager = requireActivity().supportFragmentManager
                 dialogFragmentHere.show(manager, "winwin")
-                Variables.liveDialogSwitch = 0
+                mViewModel.liveDialogSwitch = 0
+                mViewModel.resetAllLiveDatas()
             }
         }
-    }
+    } // End f --- runGameEndDialog() ---
 
-    private fun observersAdd() {
-        mediatorLiveData.addSource(Variables.liveMessage) {
+    private fun addObservers() {
+        mViewModel.liveMessageToUI.observe(viewLifecycleOwner) {
             binding!!.message1.text = it
         }
-        mediatorLiveData.addSource(Variables.liveButtonText) {
+        mViewModel.liveButtonTextToUI.observe(viewLifecycleOwner) {
             binding!!.playButton.text = it
         }
-        mediatorLiveData.addSource(Variables.liveSwitchBottomSheet) {
+        mViewModel.liveSwitchBottomSheetToUI.observe(viewLifecycleOwner) {
             if (it == true) {
                 runBottomSheet()
-                Variables.liveSwitchBottomSheet.value = false
+                mViewModel.liveSwitchBottomSheet.value = false
             }
         }
-        mediatorLiveData.addSource(Variables.liveMyResultsNow) {
+        mViewModel.liveMyResultsNowToUI.observe(viewLifecycleOwner) {
             binding!!.myScoresNow.text = it.toString()
         }
-        mediatorLiveData.addSource(Variables.liveAndrResultNow) {
+        mViewModel.liveAndrResultNowToUI.observe(viewLifecycleOwner) {
             binding!!.andrScoresNow.text = it.toString()
         }
-        mediatorLiveData.addSource(Variables.liveMyResultTotal) {
+        mViewModel.liveMyResultTotalToUI.observe(viewLifecycleOwner) {
             binding!!.myScoresTotal.text = it.toString()
         }
-        mediatorLiveData.addSource(Variables.liveAndrResultTotal) {
+        mViewModel.liveAndrResultTotalToUI.observe(viewLifecycleOwner) {
             binding!!.andrScoresTotal.text = it.toString()
         }
-        mediatorLiveData.addSource(Variables.liveDicesImages) {
+        mViewModel.liveDicesImagesToUI.observe(viewLifecycleOwner) {
             bindDicesImages()
         }
-        mediatorLiveData.addSource(Variables.liveDialogActivator) {
+        mViewModel.liveDialogActivator.observe(viewLifecycleOwner) {
             if (it == true) {
-                Variables.liveDialogActivator.value = false
-                runDialog()
+                mViewModel.liveDialogActivator.value = false
+                runGameEndDialog()
             }
         }
-        mediatorLiveData.observe(viewLifecycleOwner, observer)
-    }
+    } // End of --- addObservers() ---
 
-    private fun observersRemove() {
-        mediatorLiveData.removeSource(Variables.liveMessage)
-        mediatorLiveData.removeSource(Variables.liveButtonText)
-        mediatorLiveData.removeSource(Variables.liveSwitchBottomSheet)
-        mediatorLiveData.removeSource(Variables.liveMyResultsNow)
-        mediatorLiveData.removeSource(Variables.liveAndrResultNow)
-        mediatorLiveData.removeSource(Variables.liveMyResultTotal)
-        mediatorLiveData.removeSource(Variables.liveAndrResultTotal)
-        mediatorLiveData.removeSource(Variables.liveDicesImages)
-        mediatorLiveData.removeSource(Variables.liveDialogActivator)
-    }
-} ///
+} /// -----
