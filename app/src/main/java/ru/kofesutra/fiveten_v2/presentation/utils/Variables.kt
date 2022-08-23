@@ -12,4 +12,5 @@ object Variables {
     var andrResultNow = 0
     var andrResultTotal = 0
     var attemptNumber = ButtonState().buttonState
+    var selectedDices = mutableListOf(0, 0, 0, 0, 0)
 }

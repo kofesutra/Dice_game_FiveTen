@@ -21,7 +21,7 @@ class BottomSheet: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Settings (Behavior)
-        val offsetFromTop = 30 // Отступ сверху
+        val offsetFromTop = 150 // Отступ сверху
         (dialog as? BottomSheetDialog)?.behavior?.apply {
             isFitToContents = false
             isCancelable = true

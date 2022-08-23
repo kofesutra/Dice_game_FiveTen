@@ -25,6 +25,8 @@ class MainFragment : Fragment() {
 
     private var binding: FragmentMainBinding? = null
     private val mViewModel: MainViewModel by activityViewModels()
+    private var selectDiceReDrawOff = 0
+    private var selectDiceReDrawOn = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,18 +75,125 @@ class MainFragment : Fragment() {
         binding?.andrScoresTotal?.text = "0"
         binding?.message1?.text = "Сделайте бросок"
 
-        Glide.with(this).load(R.drawable.dd1).override(180, 180).into(binding!!.dice1Draw)
-        Glide.with(this).load(R.drawable.dd2).override(180, 180).into(binding!!.dice2Draw)
-        Glide.with(this).load(R.drawable.dd3).override(180, 180).into(binding!!.dice3Draw)
-        Glide.with(this).load(R.drawable.dd4).override(180, 180).into(binding!!.dice4Draw)
-        Glide.with(this).load(R.drawable.dd5).override(180, 180).into(binding!!.dice5Draw)
-
-        // Start the game
+        // --- Start the game ---
         binding?.playButton?.setOnClickListener {
             mViewModel.buttonCounts()
         }
+        // End of --- Start the game ---
+
+        // --- Выбор костей для переброски ---
+        binding?.dice1Draw?.setOnClickListener {
+            val indexOfDice = 0
+            selectDiceImagesToDraw(indexOfDice)
+                when (Variables.selectedDices[indexOfDice]) {
+                    0 -> {
+                        Variables.selectedDices[indexOfDice] = 1
+                        Glide.with(this).load(selectDiceReDrawOn).override(180, 180)
+                            .into(binding!!.dice1Draw)
+                    }
+                    1 -> {
+                        Variables.selectedDices[indexOfDice] = 0
+                        Glide.with(this).load(selectDiceReDrawOff).override(180, 180)
+                            .into(binding!!.dice1Draw)
+                    }
+                }
+        }
+        binding?.dice2Draw?.setOnClickListener {
+            val indexOfDice = 1
+            selectDiceImagesToDraw(indexOfDice)
+            when (Variables.selectedDices[indexOfDice]) {
+                0 -> {
+                    Variables.selectedDices[indexOfDice] = 1
+                    Glide.with(this).load(selectDiceReDrawOn).override(180, 180)
+                        .into(binding!!.dice2Draw)
+                }
+                1 -> {
+                    Variables.selectedDices[indexOfDice] = 0
+                    Glide.with(this).load(selectDiceReDrawOff).override(180, 180)
+                        .into(binding!!.dice2Draw)
+                }
+            }
+        }
+        binding?.dice3Draw?.setOnClickListener {
+            val indexOfDice = 2
+            selectDiceImagesToDraw(indexOfDice)
+            when (Variables.selectedDices[indexOfDice]) {
+                0 -> {
+                    Variables.selectedDices[indexOfDice] = 1
+                    Glide.with(this).load(selectDiceReDrawOn).override(180, 180)
+                        .into(binding!!.dice3Draw)
+                }
+                1 -> {
+                    Variables.selectedDices[indexOfDice] = 0
+                    Glide.with(this).load(selectDiceReDrawOff).override(180, 180)
+                        .into(binding!!.dice3Draw)
+                }
+            }
+        }
+        binding?.dice4Draw?.setOnClickListener {
+            val indexOfDice = 3
+            selectDiceImagesToDraw(indexOfDice)
+            when (Variables.selectedDices[indexOfDice]) {
+                0 -> {
+                    Variables.selectedDices[indexOfDice] = 1
+                    Glide.with(this).load(selectDiceReDrawOn).override(180, 180)
+                        .into(binding!!.dice4Draw)
+                }
+                1 -> {
+                    Variables.selectedDices[indexOfDice] = 0
+                    Glide.with(this).load(selectDiceReDrawOff).override(180, 180)
+                        .into(binding!!.dice4Draw)
+                }
+            }
+        }
+        binding?.dice5Draw?.setOnClickListener {
+            val indexOfDice = 4
+            selectDiceImagesToDraw(indexOfDice)
+            when (Variables.selectedDices[indexOfDice]) {
+                0 -> {
+                    Variables.selectedDices[indexOfDice] = 1
+                    Glide.with(this).load(selectDiceReDrawOn).override(180, 180)
+                        .into(binding!!.dice5Draw)
+                }
+                1 -> {
+                    Variables.selectedDices[indexOfDice] = 0
+                    Glide.with(this).load(selectDiceReDrawOff).override(180, 180)
+                        .into(binding!!.dice5Draw)
+                }
+            }
+        }
+        // End of --- Выбор костей для переброски ---
 
     } // End of onViewCreated
+
+    private fun selectDiceImagesToDraw(index: Int) {
+        when (Variables.valuesListDraw[index]) {
+            1 -> {
+                selectDiceReDrawOff = R.drawable.dd1
+                selectDiceReDrawOn = R.drawable.dd1redrop
+            }
+            2 -> {
+                selectDiceReDrawOff = R.drawable.dd2
+                selectDiceReDrawOn = R.drawable.dd2redrop
+            }
+            3 -> {
+                selectDiceReDrawOff = R.drawable.dd3
+                selectDiceReDrawOn = R.drawable.dd3redrop
+            }
+            4 -> {
+                selectDiceReDrawOff = R.drawable.dd4
+                selectDiceReDrawOn = R.drawable.dd4redrop
+            }
+            5 -> {
+                selectDiceReDrawOff = R.drawable.dd5
+                selectDiceReDrawOn = R.drawable.dd5redrop
+            }
+            6 -> {
+                selectDiceReDrawOff = R.drawable.dd6
+                selectDiceReDrawOn = R.drawable.dd6redrop
+            }
+        }
+    } // End of --- selectDiceImagesToDraw ---
 
     override fun onDestroy() {
         super.onDestroy()

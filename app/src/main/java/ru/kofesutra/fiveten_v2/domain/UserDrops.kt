@@ -1,5 +1,6 @@
 package ru.kofesutra.fiveten_v2.domain
 
+import ru.kofesutra.fiveten_v2.presentation.utils.Variables
 import ru.kofesutra.fiveten_v2.presentation.utils.Variables.attemptNumber
 import ru.kofesutra.fiveten_v2.presentation.utils.Variables.myResultNow
 import ru.kofesutra.fiveten_v2.presentation.utils.Variables.myResultTotal
@@ -20,26 +21,27 @@ class UserDrops {
                 in 2..4 -> randomValue = 0
                 6 -> randomValue = 0
             }
-
             myValuesList[i] = randomValue // Записываем результат в основной список valuesList
         } // for (i in 0..4)
         myResultNow = myValuesList.sum()
     }
 
     fun secondThirdDropsUser(){
-        val listOfNulls = mutableListOf<Int>()
-        if (myValuesList.contains(0)){
-            for( z in 0 until myValuesList.size) {
-                val indexOfVal = myValuesList[z]
-                if (indexOfVal == 0) {
+        val reDropList = mutableListOf<Int>()
+        val myValuesListHere = Variables.selectedDices
+        if (myValuesListHere.contains(1)){
+            for( z in 0 until myValuesListHere.size) {
+                val indexOfVal = myValuesListHere[z]
+                if (indexOfVal == 1) {
                     // Добавляем в список индексов значения
-                    listOfNulls.add(z)
+                    reDropList.add(z)
                 }
             }
-            if (listOfNulls.size > 0) {
-                for (i in 0 until listOfNulls.size){
+
+            if (reDropList.size > 0) {
+                for (i in 0 until reDropList.size){
                     val random = (1..6).shuffled()
-                    val nullVal = listOfNulls[i]
+                    val nullVal = reDropList[i]
                     var randomValue: Int = random[0]
                     valuesListDraw[nullVal] = randomValue // Копируем значения в лист для отображения картинок
                     when (randomValue) {
@@ -59,6 +61,7 @@ class UserDrops {
             mySummaryList.add(0, myResultNow)
             myResultTotal = mySummaryList.sum()
         }
+        Variables.selectedDices.clear()
+        Variables.selectedDices.addAll(0, listOf(0, 0, 0, 0, 0))
     }
-
 }
