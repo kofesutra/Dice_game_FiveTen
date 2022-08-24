@@ -10,7 +10,7 @@ class YouWin : DialogFragment() {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.setTitle("Вы выиграли!")
-                .setMessage("Крутенько, да? ;)")
+                .setMessage(arguments?.getString("gameResultForDialogFragment"))
                 .setPositiveButton("Зашибись!") {
                         dialog, _ ->  dialog.cancel()
                 }

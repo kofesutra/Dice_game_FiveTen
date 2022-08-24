@@ -36,13 +36,14 @@ class MainViewModel: ViewModel() {
     var liveDicesImagesToUI: LiveData<List<Int>> = liveDicesImages
     var liveDialogActivator = MutableLiveData<Boolean>()
     var liveDialogSwitch = 0
+    var showResultsAtTheEndOfGame = "_"
+
 
     fun buttonCounts(){
 
         liveMessage.value = "Сделайте бросок"
 
         when(attemptNumber){
-
             // ----- Играет Юзер -----
             0 -> {
                 valuesList = myValuesList
@@ -103,6 +104,7 @@ class MainViewModel: ViewModel() {
     }
 
     private fun gameResult(){
+        showResultsAtTheEndOfGame = "Счёт: $myResultTotal / $andrResultTotal"
         if (myResultTotal > 99 || andrResultTotal > 99){
             if (myResultTotal > andrResultTotal) { // YouWin
                 liveDialogSwitch = 1
@@ -116,7 +118,7 @@ class MainViewModel: ViewModel() {
                 liveDialogSwitch = 3
                 liveDialogActivator.value = true
             }
-        }
+                    }
     }
 
 } ///

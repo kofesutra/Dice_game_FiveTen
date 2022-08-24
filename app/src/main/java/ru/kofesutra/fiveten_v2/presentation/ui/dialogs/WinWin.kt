@@ -10,7 +10,7 @@ class WinWin : DialogFragment() {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.setTitle("Ничья!")
-                .setMessage("Тоже неплохо ;)")
+                .setMessage(arguments?.getString("gameResultForDialogFragment"))
                 .setPositiveButton("Океюшки") {
                         dialog, _ ->  dialog.cancel()
                 }

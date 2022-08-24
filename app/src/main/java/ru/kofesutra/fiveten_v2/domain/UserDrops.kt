@@ -27,9 +27,9 @@ class UserDrops {
     }
 
     fun secondThirdDropsUser(){
-        val reDropList = mutableListOf<Int>()
-        val myValuesListHere = Variables.selectedDices
-        if (myValuesListHere.contains(1)){
+        val reDropList = mutableListOf<Int>() // Создаём список индексов костей, которые надо перебросить
+        val myValuesListHere = Variables.selectedDices // Создаём список самих костей, которые надо перебросить
+        if (myValuesListHere.contains(1)){ // Вносим индексы перебрасываемых костей в reDropList
             for( z in 0 until myValuesListHere.size) {
                 val indexOfVal = myValuesListHere[z]
                 if (indexOfVal == 1) {
@@ -38,7 +38,7 @@ class UserDrops {
                 }
             }
 
-            if (reDropList.size > 0) {
+            if (reDropList.size > 0) { // Перебрасываем выбранные кости
                 for (i in 0 until reDropList.size){
                     val random = (1..6).shuffled()
                     val nullVal = reDropList[i]

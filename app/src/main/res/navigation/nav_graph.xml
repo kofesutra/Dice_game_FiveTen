@@ -17,6 +17,15 @@
         <action
             android:id="@+id/action_mainFragment_to_bottomSheet"
             app:destination="@id/bottomSheet" />
+        <action
+            android:id="@+id/action_mainFragment_to_youWin"
+            app:destination="@id/youWin" />
+        <action
+            android:id="@+id/action_mainFragment_to_youLoose"
+            app:destination="@id/youLoose" />
+        <action
+            android:id="@+id/action_mainFragment_to_winWin"
+            app:destination="@id/winWin" />
     </fragment>
     <fragment
         android:id="@+id/howToPlayFragment"
@@ -32,4 +41,16 @@
         android:id="@+id/bottomSheet"
         android:name="ru.kofesutra.fiveten_v2.presentation.utils.BottomSheet"
         android:label="BottomSheet" />
+    <dialog
+        android:id="@+id/youWin"
+        android:name="ru.kofesutra.fiveten_v2.presentation.ui.dialogs.YouWin"
+        android:label="YouWin" />
+    <dialog
+        android:id="@+id/youLoose"
+        android:name="ru.kofesutra.fiveten_v2.presentation.ui.dialogs.YouLoose"
+        android:label="YouLoose" />
+    <dialog
+        android:id="@+id/winWin"
+        android:name="ru.kofesutra.fiveten_v2.presentation.ui.dialogs.WinWin"
+        android:label="WinWin" />
 </navigation>

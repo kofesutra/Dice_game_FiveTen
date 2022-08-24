@@ -6,17 +6,16 @@ import android.os.Looper
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.findNavController
 import ru.kofesutra.fiveten_v2.R
 import ru.kofesutra.fiveten_v2.databinding.FragmentMainBinding
 import ru.kofesutra.fiveten_v2.presentation.MainActivity
-import ru.kofesutra.fiveten_v2.presentation.ui.dialogs.WinWin
-import ru.kofesutra.fiveten_v2.presentation.ui.dialogs.YouLoose
-import ru.kofesutra.fiveten_v2.presentation.ui.dialogs.YouWin
 import ru.kofesutra.fiveten_v2.presentation.utils.BottomSheet
 import ru.kofesutra.fiveten_v2.presentation.utils.Variables
 
@@ -26,6 +25,7 @@ class MainFragment : Fragment() {
     private val mViewModel: MainViewModel by activityViewModels()
     private var selectDiceReDrawOff = 0
     private var selectDiceReDrawOn = 0
+//    private val gameResultForDialogFragment = "xxxxx"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -220,31 +220,28 @@ class MainFragment : Fragment() {
         }
     } // End of ----- Заполнение картинками -----
 
-    private fun runGameEndDialog() {
+    private fun runGameEndDialog(result: String) {
         when (mViewModel.liveDialogSwitch) {
             1 -> {
-                val dialogFragmentHere = YouWin()
-                val manager = requireActivity().supportFragmentManager
-                dialogFragmentHere.show(manager, "youwin")
+                val bundle = bundleOf("gameResultForDialogFragment" to result)
+                view?.findNavController()?.navigate(R.id.action_mainFragment_to_youWin, bundle)
                 mViewModel.liveDialogSwitch = 0
                 mViewModel.resetAllLiveDatas()
             }
             2 -> {
-                val dialogFragmentHere = YouLoose()
-                val manager = requireActivity().supportFragmentManager
-                dialogFragmentHere.show(manager, "youloose")
+                val bundle = bundleOf("gameResultForDialogFragment" to result)
+                view?.findNavController()?.navigate(R.id.action_mainFragment_to_youLoose, bundle)
                 mViewModel.liveDialogSwitch = 0
                 mViewModel.resetAllLiveDatas()
             }
             3 -> {
-                val dialogFragmentHere = WinWin()
-                val manager = requireActivity().supportFragmentManager
-                dialogFragmentHere.show(manager, "winwin")
+                val bundle = bundleOf("gameResultForDialogFragment" to result)
+                view?.findNavController()?.navigate(R.id.action_mainFragment_to_winWin, bundle)
                 mViewModel.liveDialogSwitch = 0
                 mViewModel.resetAllLiveDatas()
             }
         }
-    } // End f --- runGameEndDialog() ---
+    } // End of --- runGameEndDialog() ---
 
     private fun addObservers() {
         mViewModel.liveMessageToUI.observe(viewLifecycleOwner) {
@@ -277,7 +274,7 @@ class MainFragment : Fragment() {
         mViewModel.liveDialogActivator.observe(viewLifecycleOwner) {
             if (it == true) {
                 mViewModel.liveDialogActivator.value = false
-                runGameEndDialog()
+                runGameEndDialog(mViewModel.showResultsAtTheEndOfGame)
             }
         }
     } // End of --- addObservers() ---
