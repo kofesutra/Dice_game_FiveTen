@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import ru.kofesutra.fiveten_v2.R
 
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             title = "FiveTen_v2"
             setDisplayShowHomeEnabled(true)
 //            setDisplayHomeAsUpEnabled(true)
-            setLogo(R.drawable.dd5)
+            setLogo(R.drawable.ic__logofiveten)
             setDisplayUseLogoEnabled(true)
         }
     } // End of onCreate

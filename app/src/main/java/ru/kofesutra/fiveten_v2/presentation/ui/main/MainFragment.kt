@@ -11,7 +11,6 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import com.bumptech.glide.Glide
 import ru.kofesutra.fiveten_v2.R
 import ru.kofesutra.fiveten_v2.databinding.FragmentMainBinding
 import ru.kofesutra.fiveten_v2.presentation.MainActivity
@@ -57,7 +56,7 @@ class MainFragment : Fragment() {
                         return true
                     }
                     R.id.action_exit -> {
-                        Toast.makeText(context, "Exit", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "До встречи! ;)", Toast.LENGTH_LONG).show()
                         activity!!.finish()
                         return true
                     }
@@ -88,13 +87,11 @@ class MainFragment : Fragment() {
                 when (Variables.selectedDices[indexOfDice]) {
                     0 -> {
                         Variables.selectedDices[indexOfDice] = 1
-                        Glide.with(this).load(selectDiceReDrawOn).override(180, 180)
-                            .into(binding!!.dice1Draw)
+                        binding?.dice1Draw?.setImageResource(selectDiceReDrawOn)
                     }
                     1 -> {
                         Variables.selectedDices[indexOfDice] = 0
-                        Glide.with(this).load(selectDiceReDrawOff).override(180, 180)
-                            .into(binding!!.dice1Draw)
+                        binding?.dice1Draw?.setImageResource(selectDiceReDrawOff)
                     }
                 }
         }
@@ -104,13 +101,11 @@ class MainFragment : Fragment() {
             when (Variables.selectedDices[indexOfDice]) {
                 0 -> {
                     Variables.selectedDices[indexOfDice] = 1
-                    Glide.with(this).load(selectDiceReDrawOn).override(180, 180)
-                        .into(binding!!.dice2Draw)
+                    binding?.dice2Draw?.setImageResource(selectDiceReDrawOn)
                 }
                 1 -> {
                     Variables.selectedDices[indexOfDice] = 0
-                    Glide.with(this).load(selectDiceReDrawOff).override(180, 180)
-                        .into(binding!!.dice2Draw)
+                    binding?.dice2Draw?.setImageResource(selectDiceReDrawOff)
                 }
             }
         }
@@ -120,13 +115,11 @@ class MainFragment : Fragment() {
             when (Variables.selectedDices[indexOfDice]) {
                 0 -> {
                     Variables.selectedDices[indexOfDice] = 1
-                    Glide.with(this).load(selectDiceReDrawOn).override(180, 180)
-                        .into(binding!!.dice3Draw)
+                    binding?.dice3Draw?.setImageResource(selectDiceReDrawOn)
                 }
                 1 -> {
                     Variables.selectedDices[indexOfDice] = 0
-                    Glide.with(this).load(selectDiceReDrawOff).override(180, 180)
-                        .into(binding!!.dice3Draw)
+                    binding?.dice3Draw?.setImageResource(selectDiceReDrawOff)
                 }
             }
         }
@@ -136,13 +129,11 @@ class MainFragment : Fragment() {
             when (Variables.selectedDices[indexOfDice]) {
                 0 -> {
                     Variables.selectedDices[indexOfDice] = 1
-                    Glide.with(this).load(selectDiceReDrawOn).override(180, 180)
-                        .into(binding!!.dice4Draw)
+                    binding?.dice4Draw?.setImageResource(selectDiceReDrawOn)
                 }
                 1 -> {
                     Variables.selectedDices[indexOfDice] = 0
-                    Glide.with(this).load(selectDiceReDrawOff).override(180, 180)
-                        .into(binding!!.dice4Draw)
+                    binding?.dice4Draw?.setImageResource(selectDiceReDrawOff)
                 }
             }
         }
@@ -152,13 +143,11 @@ class MainFragment : Fragment() {
             when (Variables.selectedDices[indexOfDice]) {
                 0 -> {
                     Variables.selectedDices[indexOfDice] = 1
-                    Glide.with(this).load(selectDiceReDrawOn).override(180, 180)
-                        .into(binding!!.dice5Draw)
+                    binding?.dice5Draw?.setImageResource(selectDiceReDrawOn)
                 }
                 1 -> {
                     Variables.selectedDices[indexOfDice] = 0
-                    Glide.with(this).load(selectDiceReDrawOff).override(180, 180)
-                        .into(binding!!.dice5Draw)
+                    binding?.dice5Draw?.setImageResource(selectDiceReDrawOff)
                 }
             }
         }
@@ -169,28 +158,28 @@ class MainFragment : Fragment() {
     private fun selectDiceImagesToDraw(index: Int) {
         when (Variables.valuesListDraw[index]) {
             1 -> {
-                selectDiceReDrawOff = R.drawable.dd1
-                selectDiceReDrawOn = R.drawable.dd1redrop
+                selectDiceReDrawOff = R.drawable.dd1r80
+                selectDiceReDrawOn = R.drawable.dd1r80redrop
             }
             2 -> {
-                selectDiceReDrawOff = R.drawable.dd2
-                selectDiceReDrawOn = R.drawable.dd2redrop
+                selectDiceReDrawOff = R.drawable.dd2r80
+                selectDiceReDrawOn = R.drawable.dd2r80redrop
             }
             3 -> {
-                selectDiceReDrawOff = R.drawable.dd3
-                selectDiceReDrawOn = R.drawable.dd3redrop
+                selectDiceReDrawOff = R.drawable.dd3r80
+                selectDiceReDrawOn = R.drawable.dd3r80redrop
             }
             4 -> {
-                selectDiceReDrawOff = R.drawable.dd4
-                selectDiceReDrawOn = R.drawable.dd4redrop
+                selectDiceReDrawOff = R.drawable.dd4r80
+                selectDiceReDrawOn = R.drawable.dd4r80redrop
             }
             5 -> {
-                selectDiceReDrawOff = R.drawable.dd5
-                selectDiceReDrawOn = R.drawable.dd5redrop
+                selectDiceReDrawOff = R.drawable.dd5r80
+                selectDiceReDrawOn = R.drawable.dd5r80redrop
             }
             6 -> {
-                selectDiceReDrawOff = R.drawable.dd6
-                selectDiceReDrawOn = R.drawable.dd6redrop
+                selectDiceReDrawOff = R.drawable.dd6r80
+                selectDiceReDrawOn = R.drawable.dd6r80redrop
             }
         }
     } // End of --- selectDiceImagesToDraw ---
@@ -214,24 +203,19 @@ class MainFragment : Fragment() {
         var diceDrawTemp = 0
         for (i in 0..4) {
             when (Variables.valuesListDraw[i]) {
-                1 -> diceDrawTemp = R.drawable.dd1
-                2 -> diceDrawTemp = R.drawable.dd2
-                3 -> diceDrawTemp = R.drawable.dd3
-                4 -> diceDrawTemp = R.drawable.dd4
-                5 -> diceDrawTemp = R.drawable.dd5
-                6 -> diceDrawTemp = R.drawable.dd6
+                1 -> diceDrawTemp = R.drawable.dd1r80
+                2 -> diceDrawTemp = R.drawable.dd2r80
+                3 -> diceDrawTemp = R.drawable.dd3r80
+                4 -> diceDrawTemp = R.drawable.dd4r80
+                5 -> diceDrawTemp = R.drawable.dd5r80
+                6 -> diceDrawTemp = R.drawable.dd6r80
             }
             when (i) {
-                0 -> Glide.with(this).load(diceDrawTemp).override(180, 180)
-                    .into(binding!!.dice1Draw)
-                1 -> Glide.with(this).load(diceDrawTemp).override(180, 180)
-                    .into(binding!!.dice2Draw)
-                2 -> Glide.with(this).load(diceDrawTemp).override(180, 180)
-                    .into(binding!!.dice3Draw)
-                3 -> Glide.with(this).load(diceDrawTemp).override(180, 180)
-                    .into(binding!!.dice4Draw)
-                4 -> Glide.with(this).load(diceDrawTemp).override(180, 180)
-                    .into(binding!!.dice5Draw)
+                0 -> binding?.dice1Draw?.setImageResource(diceDrawTemp)
+                1 -> binding?.dice2Draw?.setImageResource(diceDrawTemp)
+                2 -> binding?.dice3Draw?.setImageResource(diceDrawTemp)
+                3 -> binding?.dice4Draw?.setImageResource(diceDrawTemp)
+                4 -> binding?.dice5Draw?.setImageResource(diceDrawTemp)
             }
         }
     } // End of ----- Заполнение картинками -----
