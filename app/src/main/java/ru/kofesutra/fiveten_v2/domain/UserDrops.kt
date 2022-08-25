@@ -27,21 +27,21 @@ class UserDrops {
     }
 
     fun secondThirdDropsUser(){
-        val reDropList = mutableListOf<Int>() // Создаём список индексов костей, которые надо перебросить
-        val myValuesListHere = Variables.selectedDices // Создаём список самих костей, которые надо перебросить
-        if (myValuesListHere.contains(1)){ // Вносим индексы перебрасываемых костей в reDropList
-            for( z in 0 until myValuesListHere.size) {
-                val indexOfVal = myValuesListHere[z]
+        val reDropIndexesList = mutableListOf<Int>() // Создаём список индексов костей, которые надо перебросить
+        val reDropDicesList = Variables.selectedDices // Создаём список самих костей, которые надо перебросить
+        if (reDropDicesList.contains(1)){ // Вносим индексы перебрасываемых костей в reDropList
+            for( z in 0 until reDropDicesList.size) {
+                val indexOfVal = reDropDicesList[z]
                 if (indexOfVal == 1) {
                     // Добавляем в список индексов значения
-                    reDropList.add(z)
+                    reDropIndexesList.add(z)
                 }
             }
 
-            if (reDropList.size > 0) { // Перебрасываем выбранные кости
-                for (i in 0 until reDropList.size){
+            if (reDropIndexesList.size > 0) { // Перебрасываем выбранные кости
+                for (i in 0 until reDropIndexesList.size){
                     val random = (1..6).shuffled()
-                    val nullVal = reDropList[i]
+                    val nullVal = reDropIndexesList[i]
                     var randomValue: Int = random[0]
                     valuesListDraw[nullVal] = randomValue // Копируем значения в лист для отображения картинок
                     when (randomValue) {
@@ -51,8 +51,10 @@ class UserDrops {
                     }
                     myValuesList[nullVal] = randomValue
                 }
-            }// if (valuesList.contains(0))
+            }// if (reDropList.size > 0)
             myResultNow = myValuesList.sum()
+            Variables.selectedDices.clear() // Обнуляем список костей для переброски
+            Variables.selectedDices.addAll(0, listOf(0, 0, 0, 0, 0))
         }else{
             println("Нет необходимости в броске")
         }
@@ -61,7 +63,5 @@ class UserDrops {
             mySummaryList.add(0, myResultNow)
             myResultTotal = mySummaryList.sum()
         }
-        Variables.selectedDices.clear()
-        Variables.selectedDices.addAll(0, listOf(0, 0, 0, 0, 0))
-    }
+    } // fun secondThirdDropsUser()
 }
