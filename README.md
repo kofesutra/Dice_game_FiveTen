@@ -18,6 +18,7 @@ How to play:
 - After the third throw, let the Android play
 
 ==========================================
+
 What is it all for?
 For my own development.
 
@@ -34,5 +35,6 @@ Technology stack:
 - Dialog Fragment
 - Splash Screen + vector image
 - OnClickListener
-  and probably something else...
+
+...and probably something else...
                
