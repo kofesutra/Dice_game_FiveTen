@@ -16,7 +16,7 @@ I invented this game myself :)
 - If you want to reroll any dice on the next roll, select them by pressing
 - And again the button "ROLL!"
 - After the third throw, let the Android play
-
+![](FiveTen.png)
 ==========================================
 
 What is it all for?
