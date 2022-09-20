@@ -1,7 +1,7 @@
 
 I invented this game myself :)
 
-Rules of the game:
+**Rules of the game:**
 
 - Three throws of the dice are given per turn.
 - "5" counts as five points, "1" counts as ten points, the rest of the faces do not matter.
@@ -10,7 +10,7 @@ Rules of the game:
 - Players make the same amount of turns.
 - The winner is the player who reaches 100 points first or, if everyone reaches 100 points, the player with the biggest amount of points.
             
-How to play:
+**How to play:**
             
 - Press the button "ROLL!"
 - If you want to reroll any dice on the next roll, select them by pressing
