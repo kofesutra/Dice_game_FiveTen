@@ -20,10 +20,10 @@ I invented this game myself :)
 ![](FiveTen.png)
 ==========================================
 
-What is it all for?
+**What is it all for?**
 For my own development.
 
-Technology stack:
+**Technology stack:**
 
 - Kotlin
 - Single Activity + fragments
