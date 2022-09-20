@@ -243,18 +243,18 @@ class MainFragment : Fragment() {
     private fun addObservers() {
         mViewModel.liveMessageToUI.observe(viewLifecycleOwner) {
             val strTemp: String? = when(it){
-                "1" -> context?.getString(R.string.roll_the_dices)
-                "2" -> context?.getString(R.string.once_again)
-                "3" -> context?.getString(R.string.and_the_last)
-                "4" -> context?.getString(R.string.all_done)
-                else -> "error"
+                "1" -> {context?.getString(R.string.roll_the_dices)}
+                "2" -> {context?.getString(R.string.once_again)}
+                "3" -> {context?.getString(R.string.and_the_last)}
+                "4" -> {context?.getString(R.string.all_done)}
+                else -> {"error"}
             }
             binding!!.message1.text = strTemp
         }
         mViewModel.liveButtonTextToUI.observe(viewLifecycleOwner) {
             val strTempHere: String? = when(it){
-                "1" -> context?.getString(R.string.roll)
-                "2" -> context?.getString(R.string.let_android_play)
+                "1" -> {context?.getString(R.string.roll)}
+                "2" -> {context?.getString(R.string.let_android_play)}
                 else -> "error"
             }
             binding!!.playButton.text = strTempHere

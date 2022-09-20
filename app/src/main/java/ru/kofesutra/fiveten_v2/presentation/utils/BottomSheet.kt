@@ -20,7 +20,6 @@ class BottomSheet: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Settings (Behavior)
         val offsetFromTop = 150
         (dialog as? BottomSheetDialog)?.behavior?.apply {
             isFitToContents = false
