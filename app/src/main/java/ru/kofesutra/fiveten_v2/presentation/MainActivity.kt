@@ -22,15 +22,13 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.apply {
             title = "FiveTen_v2"
             setDisplayShowHomeEnabled(true)
-//            setDisplayHomeAsUpEnabled(true)
             setLogo(R.drawable.ic__logofiveten)
             setDisplayUseLogoEnabled(true)
         }
-    } // End of onCreate
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
-
-} ///
+}

@@ -4,14 +4,15 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import ru.kofesutra.fiveten_v2.R
 
 class YouWin : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
-            builder.setTitle("Вы выиграли!")
+            builder.setTitle(R.string.youwin)
                 .setMessage(arguments?.getString("gameResultForDialogFragment"))
-                .setPositiveButton("Зашибись!") {
+                .setPositiveButton(R.string.ok) {
                         dialog, _ ->  dialog.cancel()
                 }
             builder.create()

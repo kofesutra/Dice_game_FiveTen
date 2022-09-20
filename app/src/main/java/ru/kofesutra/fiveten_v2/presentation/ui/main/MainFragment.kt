@@ -25,7 +25,6 @@ class MainFragment : Fragment() {
     private val mViewModel: MainViewModel by activityViewModels()
     private var selectDiceReDrawOff = 0
     private var selectDiceReDrawOn = 0
-//    private val gameResultForDialogFragment = "xxxxx"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,13 +32,12 @@ class MainFragment : Fragment() {
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding!!.root
-    } // End of --- onCreateView ---
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        // Не отображать Back Button на ActionBar
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        (activity as AppCompatActivity).supportActionBar?.title = "FiveTen_v2"
+        (activity as AppCompatActivity).supportActionBar?.title = "FiveTen"
 
         // === OptionsMenu ===
         val menuHost: MenuHost = requireActivity()
@@ -56,7 +54,7 @@ class MainFragment : Fragment() {
                         return true
                     }
                     R.id.action_exit -> {
-                        Toast.makeText(context, "До встречи! ;)", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, context?.getString(R.string.see_you_later), Toast.LENGTH_LONG).show()
                         activity!!.finish()
                         return true
                     }
@@ -72,7 +70,7 @@ class MainFragment : Fragment() {
         binding?.myScoresTotal?.text = "0"
         binding?.andrScoresNow?.text = "0"
         binding?.andrScoresTotal?.text = "0"
-        binding?.message1?.text = "Сделайте бросок"
+        binding?.message1?.text = context?.getString(R.string.roll_the_dices)
 
         // --- Start the game ---
         binding?.playButton?.setOnClickListener {
@@ -80,7 +78,7 @@ class MainFragment : Fragment() {
         }
         // End of --- Start the game ---
 
-        // --- Выбор костей для переброски ---
+        // --- Selecting dices to reroll ---
         binding?.dice1Draw?.setOnClickListener {
             val indexOfDice = 0
             selectDiceImagesToDraw(indexOfDice)
@@ -151,9 +149,8 @@ class MainFragment : Fragment() {
                 }
             }
         }
-        // End of --- Выбор костей для переброски ---
-
-    } // End of onViewCreated
+        // End of --- Selecting dices to reroll ---
+    }
 
     private fun selectDiceImagesToDraw(index: Int) {
         when (Variables.valuesListDraw[index]) {
@@ -194,12 +191,12 @@ class MainFragment : Fragment() {
         bottomSheet.show(parentFragmentManager, BottomSheet.TAG)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            bottomSheet.dismiss() // закрыть окно..
-        }, 2000) // .. после 2 секундной задержки
+            bottomSheet.dismiss()
+        }, 2000)
     }
 
     private fun bindDicesImages() {
-        // ----- Заполнение картинками -----
+        // ----- Dices images-----
         var diceDrawTemp = 0
         for (i in 0..4) {
             when (Variables.valuesListDraw[i]) {
@@ -218,7 +215,7 @@ class MainFragment : Fragment() {
                 4 -> binding?.dice5Draw?.setImageResource(diceDrawTemp)
             }
         }
-    } // End of ----- Заполнение картинками -----
+    } // End of ----- Dices images -----
 
     private fun runGameEndDialog(result: String) {
         when (mViewModel.liveDialogSwitch) {
@@ -245,10 +242,22 @@ class MainFragment : Fragment() {
 
     private fun addObservers() {
         mViewModel.liveMessageToUI.observe(viewLifecycleOwner) {
-            binding!!.message1.text = it
+            val strTemp: String? = when(it){
+                "1" -> context?.getString(R.string.roll_the_dices)
+                "2" -> context?.getString(R.string.once_again)
+                "3" -> context?.getString(R.string.and_the_last)
+                "4" -> context?.getString(R.string.all_done)
+                else -> "error"
+            }
+            binding!!.message1.text = strTemp
         }
         mViewModel.liveButtonTextToUI.observe(viewLifecycleOwner) {
-            binding!!.playButton.text = it
+            val strTempHere: String? = when(it){
+                "1" -> context?.getString(R.string.roll)
+                "2" -> context?.getString(R.string.let_android_play)
+                else -> "error"
+            }
+            binding!!.playButton.text = strTempHere
         }
         mViewModel.liveSwitchBottomSheetToUI.observe(viewLifecycleOwner) {
             if (it == true) {
@@ -279,4 +288,4 @@ class MainFragment : Fragment() {
         }
     } // End of --- addObservers() ---
 
-} /// -----
+}

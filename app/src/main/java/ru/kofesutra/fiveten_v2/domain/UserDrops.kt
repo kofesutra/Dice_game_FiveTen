@@ -13,37 +13,36 @@ class UserDrops {
     fun firstDropUser() {
         for (i in 0..4) {
             val random = (1..6).shuffled()
-            // если значение 5, сохраняем, если 1, то меняем на 10, остальные делаем нулями
+            // If result is 5 save it, if result is 1 change it to 10, others are 0
             var randomValue: Int = random[0]
-            valuesListDraw[i] = randomValue // Копируем значения в лист для отображения картинок
+            valuesListDraw[i] = randomValue // Copying to images list
             when (randomValue) {
                 1 -> randomValue = 10
                 in 2..4 -> randomValue = 0
                 6 -> randomValue = 0
             }
-            myValuesList[i] = randomValue // Записываем результат в основной список valuesList
+            myValuesList[i] = randomValue // Saving results to valuesList
         } // for (i in 0..4)
         myResultNow = myValuesList.sum()
     }
 
     fun secondThirdDropsUser(){
-        val reDropIndexesList = mutableListOf<Int>() // Создаём список индексов костей, которые надо перебросить
-        val reDropDicesList = Variables.selectedDices // Создаём список самих костей, которые надо перебросить
-        if (reDropDicesList.contains(1)){ // Вносим индексы перебрасываемых костей в reDropList
+        val reDropIndexesList = mutableListOf<Int>() // Creating list of the indexes of the dices to reroll
+        val reDropDicesList = Variables.selectedDices // Creating list of dices to reroll
+        if (reDropDicesList.contains(1)){ // Saving indexes to the reDropList
             for( z in 0 until reDropDicesList.size) {
                 val indexOfVal = reDropDicesList[z]
                 if (indexOfVal == 1) {
-                    // Добавляем в список индексов значения
                     reDropIndexesList.add(z)
                 }
             }
 
-            if (reDropIndexesList.size > 0) { // Перебрасываем выбранные кости
+            if (reDropIndexesList.size > 0) { // Reroll selected dices
                 for (i in 0 until reDropIndexesList.size){
                     val random = (1..6).shuffled()
                     val nullVal = reDropIndexesList[i]
                     var randomValue: Int = random[0]
-                    valuesListDraw[nullVal] = randomValue // Копируем значения в лист для отображения картинок
+                    valuesListDraw[nullVal] = randomValue // Copying to the images list
                     when (randomValue) {
                         1 -> randomValue = 10
                         in 2..4 -> randomValue = 0
@@ -51,12 +50,12 @@ class UserDrops {
                     }
                     myValuesList[nullVal] = randomValue
                 }
-            }// if (reDropList.size > 0)
+            }
             myResultNow = myValuesList.sum()
-            Variables.selectedDices.clear() // Обнуляем список костей для переброски
+            Variables.selectedDices.clear() // Clearing list of the rerolling
             Variables.selectedDices.addAll(0, listOf(0, 0, 0, 0, 0))
         }else{
-            println("Нет необходимости в броске")
+            println("No need to reroll")
         }
 
         if (attemptNumber == 2) {

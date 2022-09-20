@@ -19,7 +19,7 @@ class AndroidDrops {
                 6 -> randomValue = 0
             }
             valuesListAndr[i] = randomValue
-        } // for (i in 0..4)
+        }
         andrResultNow = valuesListAndr.sum()
     }
 
@@ -48,10 +48,10 @@ class AndroidDrops {
                     }
                     valuesListAndr[nullVal] = randomValue
                 }
-            }// if (valuesList.contains(0))
+            }
             andrResultNow = valuesListAndr.sum()
         }else{
-            println("Нет необходимости в броске")
+            println("No need for dices dropping")
         }
     }
 

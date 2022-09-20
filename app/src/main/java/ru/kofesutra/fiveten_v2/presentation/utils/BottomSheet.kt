@@ -21,13 +21,11 @@ class BottomSheet: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Settings (Behavior)
-        val offsetFromTop = 150 // Отступ сверху
+        val offsetFromTop = 150
         (dialog as? BottomSheetDialog)?.behavior?.apply {
             isFitToContents = false
             isCancelable = true
-//            isDraggable = true
-//            isHideable = true
-            expandedOffset = offsetFromTop // Отступ сверху
+            expandedOffset = offsetFromTop
             state = BottomSheetBehavior.STATE_EXPANDED
         }
     }
@@ -35,5 +33,4 @@ class BottomSheet: BottomSheetDialogFragment() {
     companion object {
         const val TAG = "ModalBottomSheet"
     }
-
 }

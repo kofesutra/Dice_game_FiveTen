@@ -16,24 +16,24 @@ import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesList
 import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesListAndr
 import ru.kofesutra.fiveten_v2.presentation.utils.Variables.valuesListDraw
 
-class MainViewModel: ViewModel() {
-    // Live Datas
-    private var liveMessage = MutableLiveData<String>()
-    var liveMessageToUI: LiveData<String> = liveMessage
+class MainViewModel : ViewModel() {
+
+    private var liveMessageSwitch = MutableLiveData<String>()
+    val liveMessageToUI: LiveData<String> = liveMessageSwitch
     private var liveButtonText = MutableLiveData<String>()
-    var liveButtonTextToUI: LiveData<String> = liveButtonText
+    val liveButtonTextToUI: LiveData<String> = liveButtonText
     var liveSwitchBottomSheet = MutableLiveData<Boolean>()
     var liveSwitchBottomSheetToUI: LiveData<Boolean> = liveSwitchBottomSheet
     private var liveMyResultsNow = MutableLiveData<Int>()
-    var liveMyResultsNowToUI: LiveData<Int> = liveMyResultsNow
+    val liveMyResultsNowToUI: LiveData<Int> = liveMyResultsNow
     private var liveAndrResultNow = MutableLiveData<Int>()
-    var liveAndrResultNowToUI: LiveData<Int> = liveAndrResultNow
+    val liveAndrResultNowToUI: LiveData<Int> = liveAndrResultNow
     private var liveMyResultTotal = MutableLiveData<Int>()
-    var liveMyResultTotalToUI: LiveData<Int> = liveMyResultTotal
+    val liveMyResultTotalToUI: LiveData<Int> = liveMyResultTotal
     private var liveAndrResultTotal = MutableLiveData<Int>()
-    var liveAndrResultTotalToUI: LiveData<Int> = liveAndrResultTotal
+    val liveAndrResultTotalToUI: LiveData<Int> = liveAndrResultTotal
     private var liveDicesImages = MutableLiveData<List<Int>>()
-    var liveDicesImagesToUI: LiveData<List<Int>> = liveDicesImages
+    val liveDicesImagesToUI: LiveData<List<Int>> = liveDicesImages
     var liveDialogActivator = MutableLiveData<Boolean>()
     var liveDialogSwitch = 0
     var showResultsAtTheEndOfGame = "_"
@@ -41,44 +41,44 @@ class MainViewModel: ViewModel() {
 
     fun buttonCounts(){
 
-        liveMessage.value = "Сделайте бросок"
+        liveMessageSwitch.value = "1"
 
         when(attemptNumber){
-            // ----- Играет Юзер -----
+            // ----- User playing -----
             0 -> {
                 valuesList = myValuesList
                 UserDrops().firstDropUser()
                 refreshResults()
-                liveMessage.value = "Ещё бросок!"
+                liveMessageSwitch.value = "2"
                 attemptNumber = 1
             }
             1 -> {
                 UserDrops().secondThirdDropsUser()
                 refreshResults()
-                liveMessage.value = "И ещё один!"
+                liveMessageSwitch.value = "3"
                 attemptNumber = 2
             }
             2 -> {
                 UserDrops().secondThirdDropsUser()
                 refreshResults()
-                liveButtonText.value = "Дать поиграть Андрюше"
-                liveMessage.value = "Все броски сделаны"
+                liveButtonText.value = "2"
+                liveMessageSwitch.value = "4"
                 attemptNumber = 3
             }
-            // End of ----- Играет Юзер -----
+            // End of ----- User playing -----
             3 -> {
-                // ----- Играет Андрюша -----
+                // ----- Android playing -----
                 valuesList = valuesListAndr
                 liveSwitchBottomSheet.value = true // Turn on bottom sheet once
                 AndroidDrops().firstDropAndroid()
                 AndroidDrops().secondThirdDropsAndroid()
                 AndroidDrops().secondThirdDropsAndroid()
                 AndroidDrops().andrCountTotal()
-               // End of ----- Играет Андрюша -----
+               // End of ----- Android playing -----
 
                 refreshResults()
-                liveButtonText.value = "Бросок!"
-                liveMessage.value = "Сделайте бросок"
+                liveButtonText.value = "1"
+                liveMessageSwitch.value = "1"
                 attemptNumber = 0
                 gameResult()
             }
@@ -104,7 +104,7 @@ class MainViewModel: ViewModel() {
     }
 
     private fun gameResult(){
-        showResultsAtTheEndOfGame = "Счёт: $myResultTotal / $andrResultTotal"
+        showResultsAtTheEndOfGame = "Game score: $myResultTotal / $andrResultTotal"
         if (myResultTotal > 99 || andrResultTotal > 99){
             if (myResultTotal > andrResultTotal) { // YouWin
                 liveDialogSwitch = 1
@@ -118,7 +118,7 @@ class MainViewModel: ViewModel() {
                 liveDialogSwitch = 3
                 liveDialogActivator.value = true
             }
-                    }
+        }
     }
 
-} ///
+}
